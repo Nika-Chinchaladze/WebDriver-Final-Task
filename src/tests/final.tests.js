@@ -9,32 +9,27 @@ describe("Swag Labs Page", () => {
 
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
-        const username = await page("login").usernameInput;
-        const password = await page("login").passwordInput;
-
-        await username.setValue("Chincho");
-        await password.setValue("chincho123");
-
+        await page("login").usernameInput.setValue("chincho");
+        await page("login").passwordInput.setValue("chincho123");
+    
         // Clear the inputs.
-        await username.setValue("");
-        await password.setValue("");
+        await page("login").usernameInput.clearValue();
+        await page("login").passwordInput.clearValue();
 
+        const username = await page("login").usernameInput.getValue();
+        const password = await page("login").passwordInput.getValue();
+
+        expect(username).toBe("");
+        expect(password).toBe("");
+    
         // Hit the "Login" button.
-        await browser.waitUntil(async () => {
-            const usernameValue = await username.getValue();
-            const passwordValue = await password.getValue();
-            return usernameValue === "" && passwordValue === "";
-        }, {
-            timeout: 5000,
-            timeoutMsg: "Inputs were not cleared within 5 seconds"
-        });
-
+        await browser.refresh();
         await page("login").submitBtn.click();
-
+    
         // Check the error messages: "Username is required".
         const errorElement = await page("error").userNameRequired;
         const errorMessage = await errorElement.getText();
-
+    
         expect(errorElement).toExist();
         expect(errorMessage).toContain("Username is required");
     });

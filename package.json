@@ -1,0 +1,17 @@
+{
+  "name": "final-task",
+  "version": "1.0.0",
+  "description": "Final Task Webdriverio",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio run src/config/wdio.conf.js"
+  },
+  "author": "Nika Chinchaladze",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^8.39.1",
+    "@wdio/local-runner": "^8.39.1",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0"
+  }
+}

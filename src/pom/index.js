@@ -3,7 +3,7 @@ const LoginComponent = require("./components/login/login.component");
 const ErrorComponent = require("./components/login/error.component");
 
 /**
- * @param name { 'base' | 'login' } 
+ * @param name { 'base' | 'login' | 'error' } 
  * @returns 
  */
 

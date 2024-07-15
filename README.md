@@ -15,3 +15,5 @@ UC-3 Test Login form with credentials by passing Username & Password:
   1) Type credentials in username which are under Accepted username are sections.
   2) Enter password as secret sauce.
   3) Click on Login and validate the title “Swag Labs” in the dashboard.
+
+=> Just uncomment 'firefox' and 'MicrosoftEdge' browserNames from capabilities list inside wdio.conf.js file

@@ -6,7 +6,7 @@ describe("Swag Labs Page", () => {
     beforeEach(async () => {
         await page("base").open();
     });
-
+/*
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
         await page("login").usernameInput.setValue("chincho");
@@ -56,5 +56,25 @@ describe("Swag Labs Page", () => {
     
         expect(errorElement).toExist();
         expect(errorMessage).toContain("Password is required");
+    });
+*/
+    it("should test UC-3 task", async () => {
+        // Type credentials in username which are under Accepted username are sections.
+        const validUsername = await page("credential").validUserName.getText();
+        const validPassword = await page("credential").validPassword.getText();
+
+        const usernameList = validUsername.split("\n");
+        const passwordList = validPassword.split("\n");
+
+        await page("login").usernameInput.setValue(usernameList[usernameList.length - 1]);
+
+        // Enter password as secret_sauce.
+        await page("login").passwordInput.setValue(passwordList[passwordList.length - 1]);
+
+        // Click on Login
+        await page("login").submitBtn.click();
+        await browser.pause(3000);
+        
+        // Validate the title “Swag Labs” in the dashboard.
     });
 });

@@ -1,12 +1,13 @@
 const BaseComponent = require("../common/base.component");
+const errorData = require("./error.data.json");
 
 class ErrorComponent extends BaseComponent {
     constructor() {
-        super("//form");
+        super(errorData.root);
     }
 
     get userNameRequired() {
-        return this.rootElement.$('//h3[@data-test="error"]');
+        return this.rootElement.$(errorData.username);
     }
 }
 

@@ -1,4 +1,5 @@
 const { expect, browser } = require('@wdio/globals');
+const testData = require("./testData.json");
 
 const { page } = require("../pom/index");
 
@@ -9,15 +10,15 @@ describe("Swag Labs Page", () => {
 
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
-        await page("login").setLoginInputs("chincho", "chincho123");
+        await page("login").setLoginInputs(testData.username, testData.password);
     
         // Clear the inputs.
         await page("login").setLoginInputs();
 
         // check that login inputs are cleared.
         const values = await page("login").getLoginInputs();
-        expect(values.username).toBe("");
-        expect(values.password).toBe("");
+        expect(values.username).toBe(testData.empty);
+        expect(values.password).toBe(testData.empty);
     
         // Hit the "Login" button.
         await browser.refresh();
@@ -28,22 +29,22 @@ describe("Swag Labs Page", () => {
         const errorMessage = await errorElement.getText();
     
         expect(errorElement).toExist();
-        expect(errorMessage).toContain("Username is required");
+        expect(errorMessage).toContain(testData.uc1Check);
     });
 
     it("should test UC-2 task", async () => {
         // Type any credentials in username & Enter password.
-        await page("login").setLoginInputs("chincho", "chincho123");
+        await page("login").setLoginInputs(testData.username, testData.password);
 
         // Clear the "Password" input.
-        await page("login").setLoginInputs("chincho", "");
+        await page("login").setLoginInputs(testData.username, testData.empty);
 
         // Hit the "Login" button.
         const values = await page("login").getLoginInputs();
-        expect(values.password).toBe("");
+        expect(values.password).toBe(testData.empty);
         
         await browser.refresh();
-        await page("login").setLoginInputs("chincho", "");
+        await page("login").setLoginInputs(testData.username, testData.empty);
         await page("login").submitBtn.click();
 
         // Check the error messages: "Password is required".
@@ -51,7 +52,7 @@ describe("Swag Labs Page", () => {
         const errorMessage = await errorElement.getText();
     
         expect(errorElement).toExist();
-        expect(errorMessage).toContain("Password is required");
+        expect(errorMessage).toContain(testData.uc2Check);
     });
  
     it("should test UC-3 task", async () => {
@@ -75,7 +76,7 @@ describe("Swag Labs Page", () => {
         const titleText = await title.getText();
 
         expect(title).toExist();
-        expect(titleText).toHaveText("Swag Labs");
+        expect(titleText).toHaveText(testData.uc3Check);
     });
   
 });

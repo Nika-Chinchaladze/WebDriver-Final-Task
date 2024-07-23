@@ -1,16 +1,17 @@
 const BaseComponent = require("../common/base.component");
+const credentialData = require("./credential.data.json");
 
 class CredentialComponent extends BaseComponent {
     constructor() {
-        super('//div[@class="login_credentials_wrap-inner"]');
+        super(credentialData.root);
     }
 
     get validUserName() {
-        return this.rootElement.$('//div[@id="login_credentials"]')
+        return this.rootElement.$(credentialData.username);
     }
 
     get validPassword() {
-        return this.rootElement.$('//div[@data-test="login-password"]')
+        return this.rootElement.$(credentialData.password);
     }
 
     async validCredentials() {

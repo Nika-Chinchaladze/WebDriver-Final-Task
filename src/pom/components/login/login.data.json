@@ -1,0 +1,6 @@
+{
+    "root": "//form",
+    "username": "//input[@data-test='username']",
+    "password": "//input[@data-test='password']",
+    "submit": "//input[@data-test='login-button']"
+}

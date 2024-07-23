@@ -1,20 +1,21 @@
 const BaseComponent = require("../common/base.component");
+const loginData = require("./login.data.json");
 
 class LoginComponent extends BaseComponent {
     constructor() {
-        super("//form");
+        super(loginData.root);
     }
 
     get usernameInput() {
-        return this.rootElement.$('//input[@data-test="username"]');
+        return this.rootElement.$(loginData.username);
     }
 
     get passwordInput() {
-        return this.rootElement.$('//input[@data-test="password"]');
+        return this.rootElement.$(loginData.password);
     }
 
     get submitBtn() {
-        return this.rootElement.$('//input[@data-test="login-button"]');
+        return this.rootElement.$(loginData.submit);
     }
 
     async setLoginInputs(userName="", password="") {

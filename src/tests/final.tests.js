@@ -8,6 +8,7 @@ describe("Swag Labs Page", () => {
         await page("base").open();
     });
 
+    
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
         await page("login").setLoginInputs(testData.username, testData.password);
@@ -32,6 +33,7 @@ describe("Swag Labs Page", () => {
         expect(errorMessage).toContain(testData.uc1Check);
     });
 
+
     it("should test UC-2 task", async () => {
         // Type any credentials in username & Enter password.
         await page("login").setLoginInputs(testData.username, testData.password);
@@ -55,6 +57,7 @@ describe("Swag Labs Page", () => {
         expect(errorMessage).toContain(testData.uc2Check);
     });
  
+
     it("should test UC-3 task", async () => {
         // Type credentials in username which are under Accepted username are sections.
         const valid = await page("credential").validCredentials();
@@ -78,5 +81,4 @@ describe("Swag Labs Page", () => {
         expect(title).toExist();
         expect(titleText).toHaveText(testData.uc3Check);
     });
-  
 });

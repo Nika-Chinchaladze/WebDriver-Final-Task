@@ -12,6 +12,13 @@ class CredentialComponent extends BaseComponent {
     get validPassword() {
         return this.rootElement.$('//div[@data-test="login-password"]')
     }
+
+    async validCredentials() {
+        return {
+            username: await this.validUserName.getText(),
+            password: await this.validPassword.getText(),
+        }
+    }
 }
 
 module.exports = CredentialComponent;

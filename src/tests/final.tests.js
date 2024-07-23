@@ -10,18 +10,15 @@ describe("Swag Labs Page", () => {
 
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
-        await page("login").usernameInput.setValue("chincho");
-        await page("login").passwordInput.setValue("chincho123");
+        await page("login").setLoginInputs("chincho", "chincho123");
     
         // Clear the inputs.
-        await page("login").usernameInput.setValue("");
-        await page("login").passwordInput.setValue("");
+        await page("login").setLoginInputs();
 
-        const username = await page("login").usernameInput.getValue();
-        const password = await page("login").passwordInput.getValue();
-
-        expect(username).toBe("");
-        expect(password).toBe("");
+        // check that login inputs are cleared.
+        const values = await page("login").getLoginInputs();
+        expect(values.username).toBe("");
+        expect(values.password).toBe("");
     
         // Hit the "Login" button.
         await browser.refresh();
@@ -35,11 +32,9 @@ describe("Swag Labs Page", () => {
         expect(errorMessage).toContain("Username is required");
     });
     
-
     it("should test UC-2 task", async () => {
         // Type any credentials in username & Enter password.
-        await page("login").usernameInput.setValue("chincho");
-        await page("login").passwordInput.setValue("chincho123");
+        await page("login").setLoginInputs("chincho", "chincho123");
 
         // Clear the "Password" input.
         await page("login").passwordInput.setValue("");
@@ -84,4 +79,5 @@ describe("Swag Labs Page", () => {
         expect(title).toExist();
         expect(titleText).toHaveText("Swag Labs");
     });
+    
 });

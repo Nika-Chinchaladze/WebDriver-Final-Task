@@ -16,6 +16,19 @@ class LoginComponent extends BaseComponent {
     get submitBtn() {
         return this.rootElement.$('//input[@data-test="login-button"]');
     }
+
+    async setLoginInputs(userName="", password="") {
+        await this.usernameInput.setValue(userName);
+        await this.passwordInput.setValue(password);
+        return;
+    }
+
+    async getLoginInputs() {
+        return {
+            username: await this.usernameInput.getValue(),
+            password: await this.passwordInput.getValue(),
+        }
+    }
 }
 
 module.exports = LoginComponent;

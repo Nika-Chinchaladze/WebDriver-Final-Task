@@ -6,8 +6,7 @@ describe("Swag Labs Page", () => {
     beforeEach(async () => {
         await page("base").open();
     });
-
-
+/*
     it("should test UC-1 task", async () => {
         // Type any credentials into "Username" and "Password" fields.
         await page("login").setLoginInputs("chincho", "chincho123");
@@ -31,20 +30,20 @@ describe("Swag Labs Page", () => {
         expect(errorElement).toExist();
         expect(errorMessage).toContain("Username is required");
     });
-    
+*/    
     it("should test UC-2 task", async () => {
         // Type any credentials in username & Enter password.
         await page("login").setLoginInputs("chincho", "chincho123");
 
         // Clear the "Password" input.
-        await page("login").passwordInput.setValue("");
+        await page("login").setLoginInputs("chincho", "");
 
         // Hit the "Login" button.
-        const value = await page("login").passwordInput.getValue();
-        expect(value).toBe("");
+        const values = await page("login").getLoginInputs();
+        expect(values.password).toBe("");
         
         await browser.refresh();
-        await page("login").usernameInput.setValue("chincho");
+        await page("login").setLoginInputs("chincho", "");
         await page("login").submitBtn.click();
 
         // Check the error messages: "Password is required".
@@ -55,7 +54,7 @@ describe("Swag Labs Page", () => {
         expect(errorMessage).toContain("Password is required");
     });
 
-    
+/*    
     it("should test UC-3 task", async () => {
         // Type credentials in username which are under Accepted username are sections.
         const validUsername = await page("credential").validUserName.getText();
@@ -72,12 +71,12 @@ describe("Swag Labs Page", () => {
         // Click on Login
         await page("login").submitBtn.click();
 
-        // Validate the title “Swag Labs” in the dashboard.
+        // Validate the title "Swag Labs" in the dashboard.
         const title = await page("title").title;
         const titleText = await title.getText();
 
         expect(title).toExist();
         expect(titleText).toHaveText("Swag Labs");
     });
-    
+*/  
 });

@@ -1,0 +1,4 @@
+{
+    "root": "//div[@class='header_label']",
+    "title": "//div[@class='app_logo']"
+}

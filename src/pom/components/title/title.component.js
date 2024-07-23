@@ -1,12 +1,13 @@
 const BaseComponent = require("../common/base.component");
+const titleData = require("./title.data.json");
 
 class TitleComponent extends BaseComponent {
     constructor() {
-        super('//div[@class="header_label"]');
+        super(titleData.root);
     }
 
     get title() {
-        return this.rootElement.$('//div[@class="app_logo"]');
+        return this.rootElement.$(titleData.title);
     }
 }
 
